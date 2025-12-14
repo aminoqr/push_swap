@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:35:56 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/14 16:20:01 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/14 18:31:32 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void ft_add_front(t_stack **stack, t_stack *new_node);
 t_stack *ft_new_node(int value);
 int ft_is_duplicate(t_stack *stack, int value);
 void ft_remove_front(t_stack **stack);
+void ft_remove_back(t_stack **stack);
 
 
 #endif
