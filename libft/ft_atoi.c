@@ -6,15 +6,15 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 16:13:06 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/10/05 19:22:30 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:23:22 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	symbol;
-	int	num;
+	long		i;
+	long		symbol;
+	long	num;
 
 	i = 0;
 	symbol = 1;
