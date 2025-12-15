@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:40:44 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/14 18:25:01 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/15 12:28:19 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,17 @@ int ft_is_duplicate(t_stack *stack, int value)
 		stack = stack -> next;
 	}
 	return 0;
+}
+
+int ft_is_sorted(t_stack *stack)
+{
+	if (!stack)
+		return (1);
+	while(stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return 0;
+		stack = stack->next;
+	}
+	return 1;
 }
