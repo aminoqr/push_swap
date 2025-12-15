@@ -22,7 +22,9 @@ int is_valid_input(char *str)
 {
 	int i = 0;
 
-	if (str[i] == '-')
+	if(!str[i])
+		return 0;
+	if (str[i] == '-' || str[i] == '+')
 	{
 		i++;
 		if(!str[i])
@@ -35,6 +37,27 @@ int is_valid_input(char *str)
 		i++;
 	}
 	return (1);
+}
+
+int stack_size(t_stack *stack)
+{
+	int size;
+
+	size = 1;
+	if (!stack)
+		return 0;
+	while(stack->next)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return size;
+}
+
+void sort_three(t_stack *stack)
+{
+	if ((stack->value > stack->next->value) && (stack->value > stack->next->next->value))
+		
 }
 
 int main(int argc, char **argv)
@@ -62,4 +85,8 @@ int main(int argc, char **argv)
 		i++;
 	}
 	print_stack(stack_a);
+	if (ft_is_sorted(stack_a) || argc == 2)
+	{
+		return (0);
+	}
 }
