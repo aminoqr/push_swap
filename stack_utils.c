@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:40:44 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/15 12:28:19 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/19 19:06:47 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,38 @@ int ft_is_sorted(t_stack *stack)
 		stack = stack->next;
 	}
 	return 1;
+}
+
+t_stack *ft_find_max(t_stack **stack)
+{
+	t_stack *temp;
+	t_stack *max;
+	if (!stack || !*stack)
+		return NULL;
+	temp = *stack;
+	max = *stack;
+	while(temp)
+	{
+		if (temp->value > max->value)
+			max = temp;
+		temp = temp->next;
+	}
+	return max;
+}
+
+t_stack *ft_find_min(t_stack **stack)
+{
+	t_stack *temp;
+	t_stack *min;
+	if (!stack || !*stack)
+		return NULL;
+	temp = *stack;
+	min = *stack;
+	while(temp->next)
+	{
+		if (temp->value < min-> value)
+			min = temp->value;
+		temp = temp->next;
+	}
+	return min;
 }

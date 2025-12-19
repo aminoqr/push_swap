@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:35:56 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/15 12:36:00 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:59:07 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void ft_remove_front(t_stack **stack);
 void ft_remove_back(t_stack **stack);
 int ft_is_duplicate(t_stack *stack, int value);
 int ft_is_sorted(t_stack *stack);
+t_stack *ft_find_max(t_stack **stack);
+t_stack *ft_find_min(t_stack **stack);
 
 
 //swap.c functions
