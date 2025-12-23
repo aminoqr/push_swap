@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:35:56 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/19 17:59:07 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:42:07 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,22 @@
 typedef struct s_stack
 {
 	int					value;
+	int					index;
+	int					push_cost;
+	int					above_median;
+	int					cheapest;
 	struct s_stack		*next;
 	struct s_stack		*prev;
+	struct s_stack		*target_node;
+	
 }	t_stack;
 
 //main.c functions
 void	print_stack(t_stack *stack);
 void	ft_error(void);
-int is_valid_input(char *str);
+int 	is_valid_input(char *str);
+int 	stack_size(t_stack **stack);
+void 	sort_three(t_stack **stack);
 
 //push.c functions
 int ft_push(t_stack **src, t_stack **dest);
