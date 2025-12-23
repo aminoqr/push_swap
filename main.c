@@ -39,25 +39,48 @@ int is_valid_input(char *str)
 	return (1);
 }
 
-int stack_size(t_stack *stack)
+int stack_size(t_stack **stack)
 {
 	int size;
+	t_stack *temp;
 
 	size = 1;
-	if (!stack)
+	if (!*stack || !stack)
 		return 0;
-	while(stack->next)
+	temp = *stack;
+	while(temp->next)
 	{
 		size++;
-		stack = stack->next;
+		temp = temp->next;
 	}
 	return size;
 }
 
-void sort_three(t_stack *stack)
+void sort_three(t_stack **stack)
 {
-	if ((stack->value > stack->next->value) && (stack->value > stack->next->next->value))
-		
+	int	num1;
+	int num2;
+	int num3;
+
+	num1 = (*stack)->value;
+	num2 = (*stack)->next->value;
+	num3 = (*stack)->next->next->value;
+	if (num2 > num3 && num3 > num1)
+	{
+		rra(stack);
+		sa(stack);
+	}
+	else if(num3 > num1 && num1 > num2)
+		sa(stack);
+	else if(num2 > num1 && num1 > num3)
+		rra(stack);
+	else if(num1 > num3 && num3 > num2)
+		ra(stack);
+	else
+	{
+		sa(stack);
+		rra(stack);
+	}
 }
 
 int main(int argc, char **argv)
