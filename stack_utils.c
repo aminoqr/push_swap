@@ -6,7 +6,7 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:40:44 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/19 19:06:47 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/23 16:44:08 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ t_stack *ft_new_node(int value)
 	new_node -> value = value;
 	new_node -> prev = NULL;
 	new_node -> next = NULL;
+	new_node -> target_node = NULL;
+	new_node -> index = -1;
+	new_node -> push_cost = 0;
+	new_node -> above_median = -1;
+	new_node -> cheapest = 0;
 	
 	return new_node;
 }
@@ -135,11 +140,35 @@ t_stack *ft_find_min(t_stack **stack)
 		return NULL;
 	temp = *stack;
 	min = *stack;
-	while(temp->next)
+	while(temp)
 	{
 		if (temp->value < min-> value)
-			min = temp->value;
+			min = temp;
+		if (!temp->next)
+			break;
 		temp = temp->next;
 	}
 	return min;
+}
+
+void set_current_position(t_stack *stack)
+{
+	int index;
+	int size;
+	
+	if (!stack)
+		return;
+	index = 0;
+	size = stack_size(&stack);
+	while(stack)
+	{
+		stack->index = index;
+		
+		if (index <= size/2)
+			stack->above_median = 1;
+		else
+			stack -> above_median = 0; 
+		index++;
+		stack = stack->next;
+	}
 }
