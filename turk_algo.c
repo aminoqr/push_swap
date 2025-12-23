@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turk_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aminoqr <aminoqr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:02:55 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/23 16:56:46 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/23 22:24:49 by aminoqr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,15 @@ void set_cheapest(t_stack *b)
 
 t_stack *get_cheapest_node(t_stack *stack)
 {
-	
+	if (!stack)
+		return NULL;
+	while(stack)
+	{
+		if (stack -> cheapest)
+			return stack;
+		stack = stack -> next;
+	}
+	return NULL;
 }
 
 void turk_sort(t_stack **a, t_stack **b)
