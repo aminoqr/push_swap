@@ -3,102 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   turk_algo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aminoqr <aminoqr@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:02:55 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/23 22:24:49 by aminoqr          ###   ########.fr       */
+/*   Updated: 2025/12/24 18:53:24 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft/libft.h"
 
-t_stack *get_target_node(t_stack *a, int b_val)
+t_stack	*get_target_node(t_stack *a, int b_val)
 {
-    t_stack *target_node;
-	t_stack *temp;
+	t_stack	*target_node;
+	t_stack	*temp;
 
 	temp = a;
 	target_node = NULL;
-	while(a)
+	while (a)
 	{
-		if(a->value > b_val)
+		if (a->value > b_val)
 		{
-			if(!target_node || target_node->value > a->value)
+			if (!target_node || target_node->value > a->value)
 				target_node = a;
 		}
 		a = a->next;
 	}
 	if (!target_node)
-		return ft_find_min(&temp);
-	return target_node;
+		return (ft_find_min(temp));
+	return (target_node);
 }
 
-void set_target_b(t_stack *a, t_stack *b)
+void	set_target_b(t_stack *a, t_stack *b)
 {
-	while(b)
+	while (b)
 	{
-		b -> target_node = get_target_node(a, b->value);
-		b = b -> next;
+		b->target_node = get_target_node(a, b->value);
+		b = b->next;
 	}
-	return ;
 }
 
-void init_nodes_b(t_stack *a, t_stack *b)
+static int	get_max(int a, int b)
 {
-    int len_a;
-    int len_b;
-
-    len_a = stack_size(&a);
-    len_b = stack_size(&b);
-    while (b)
-    {
-        b->push_cost = b->index;
-        if (b->above_median && b->target_node->above_median)
-            b->push_cost = (b->index > b->target_node->index) ? 
-                           b->index : b->target_node->index;
-        else if (!b->above_median && !b->target_node->above_median)
-            b->push_cost = ((len_b - b->index) > (len_a - b->target_node->index)) ? 
-                           (len_b - b->index) : (len_a - b->target_node->index);
-        else
-            b->push_cost = ((b->above_median) ? b->index : (len_b - b->index)) + 
-                           ((b->target_node->above_median) ? 
-                           b->target_node->index : (len_a - b->target_node->index));
-        b = b->next;
-    }
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-void set_cheapest(t_stack *b)
+static void	calc_push_cost(t_stack *b, int len_a, int len_b)
 {
-	t_stack *cheapest;
-	
-	cheapest = b;
-	while(b)
+	int	cost_b;
+	int	cost_a;
+
+	b->push_cost = b->index;
+	if (b->above_median && b->target_node->above_median)
+		b->push_cost = get_max(b->index, b->target_node->index);
+	else if (!b->above_median && !b->target_node->above_median)
 	{
-		b->cheapest = 0;
-		if(b->push_cost < cheapest->push_cost)
-			cheapest = b;
-		b = b-> next;
+		cost_b = len_b - b->index;
+		cost_a = len_a - b->target_node->index;
+		b->push_cost = get_max(cost_b, cost_a);
 	}
-	cheapest -> cheapest = 1;
-}
-
-t_stack *get_cheapest_node(t_stack *stack)
-{
-	if (!stack)
-		return NULL;
-	while(stack)
+	else
 	{
-		if (stack -> cheapest)
-			return stack;
-		stack = stack -> next;
+		if (b->above_median)
+			cost_b = b->index;
+		else
+			cost_b = len_b - b->index;
+		if (b->target_node->above_median)
+			cost_a = b->target_node->index;
+		else
+			cost_a = len_a - b->target_node->index;
+		b->push_cost = cost_b + cost_a;
 	}
-	return NULL;
 }
 
-void turk_sort(t_stack **a, t_stack **b)
+void	init_nodes_b(t_stack *a, t_stack *b)
 {
-	while(stack_size(a) > 3)
-		pb(a, b);
-	sort_three(a);
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_size(&a);
+	len_b = stack_size(&b);
+	while (b)
+	{
+		calc_push_cost(b, len_a, len_b);
+		b = b->next;
+	}
 }
