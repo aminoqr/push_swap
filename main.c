@@ -6,11 +6,10 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 18:37:18 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/24 18:53:24 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/25 14:00:04 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
 
 void	ft_error(void)

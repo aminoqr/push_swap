@@ -6,14 +6,15 @@
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/14 13:35:56 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/12/24 18:53:24 by aasylbye         ###   ########.fr       */
+/*   Updated: 2025/12/25 13:50:23 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_stack
 {
@@ -26,6 +27,13 @@ typedef struct s_stack
 	struct s_stack		*prev;
 	struct s_stack		*target_node;
 }	t_stack;
+
+//libft_utils.c functions
+int		ft_isdigit(int c);
+long	ft_atoi(const char *nptr);
+
+//libft_utils2.c functions
+char	**ft_split(char const *s, char c);
 
 //main.c functions
 void	ft_error(void);

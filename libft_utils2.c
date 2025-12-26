@@ -1,53 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   libft_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aasylbye <aasylbye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/09 15:26:28 by aasylbye          #+#    #+#             */
-/*   Updated: 2025/10/12 19:35:11 by aasylbye         ###   ########.fr       */
+/*   Created: 2025/12/25 12:00:00 by aasylbye          #+#    #+#             */
+/*   Updated: 2025/12/25 13:49:35 by aasylbye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	word_counter(char *s, char c)
-{
-	int	i;
-	int	is_word;
-	int	word_count;
-
-	i = 0;
-	word_count = 0;
-	is_word = 0;
-	while (s[i])
-	{
-		if (!is_word && s[i] != c)
-		{
-			word_count++;
-			is_word = 1;
-		}
-		else if (is_word && s[i] == c)
-		{
-			is_word = 0;
-		}
-		i++;
-	}
-	return (word_count);
-}
-
-int	word_len(char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c && s[i])
-		i++;
-	return (i);
-}
-
-void	free_everything(char **dptr, int last)
+static void	free_everything(char **dptr, int last)
 {
 	while (last >= 0)
 	{
@@ -57,7 +22,17 @@ void	free_everything(char **dptr, int last)
 	free(dptr);
 }
 
-int	splitter(char **dptr, char *s, char c)
+static int	word_len(char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != c && s[i])
+		i++;
+	return (i);
+}
+
+static int	splitter(char **dptr, char *s, char c)
 {
 	int	si;
 	int	di;
@@ -80,6 +55,29 @@ int	splitter(char **dptr, char *s, char c)
 		dptr[di++][dj] = '\0';
 	}
 	return (1);
+}
+
+static int	word_counter(char *s, char c)
+{
+	int	i;
+	int	is_word;
+	int	word_count;
+
+	i = 0;
+	word_count = 0;
+	is_word = 0;
+	while (s[i])
+	{
+		if (!is_word && s[i] != c)
+		{
+			word_count++;
+			is_word = 1;
+		}
+		else if (is_word && s[i] == c)
+			is_word = 0;
+		i++;
+	}
+	return (word_count);
 }
 
 char	**ft_split(char const *s, char c)
