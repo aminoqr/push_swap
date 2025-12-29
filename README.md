@@ -109,12 +109,4 @@ ARG="4 67 3 87 23"; ./push_swap $ARG | ./visualizer
 - [Turk Algorithm Explanation](https://medium.com/@ayogun/push-swap-c1f5d2d41e97) - Detailed breakdown of the algorithm used
 - [Sorting Algorithm Visualizations](https://visualgo.net/en/sorting) - Understanding sorting concepts
 
-### AI Usage
-
-AI assistance (GitHub Copilot) was used in this project for:
-- **Code formatting**: Fixing norminette compliance issues (spacing, indentation, line length)
-- **File organization**: Splitting functions across multiple files to meet the 5-function-per-file limit
-- **Documentation**: Generating this README file
-- **Git workflow**: Creating descriptive commit messages
-
 The core algorithm logic and implementation were developed independently.
